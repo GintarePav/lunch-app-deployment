@@ -107,6 +107,6 @@ npm start
 
 ### Bendradarbiavimas
 
-Kreiptis į _gintare.pavilaviciute@gmail.com_, jei reikalinga kokia nors informacija, pvz. peržiūrint "pahostintą" versiją ir norint gauti administratoriaus teises.
+Kreiptis į _gintare.pavilaviciute@gmail.com_, jei reikalinga kokia nors informacija, pvz. peržiūrint ["pahostintą" versiją](https://kontrastu-virtuve.vercel.app/todays-lunch) ir norint gauti administratoriaus teises.
 
 _projectSetUp.md_ taip pat galima matyti mano užrašus bekuriant projekto bazinę dalį.
