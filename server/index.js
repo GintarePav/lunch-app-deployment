@@ -12,9 +12,20 @@ const app = express();
 // CORS configuration
 const corsOptions = {
   origin: process.env.CLIENT_URL || "http://localhost:3000", // Replace with your Vercel URL in production
-  methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
+  methods: ["GET", "OPTIONS", "PATCH", "DELETE", "POST", "PUT"],
+  allowedHeaders: [
+    "X-CSRF-Token",
+    "X-Requested-With",
+    "Accept",
+    "Accept-Version",
+    "Content-Length",
+    "Content-MD5",
+    "Content-Type",
+    "Date",
+    "X-Api-Version",
+    "Authorization",
+  ],
 };
 
 app.use(cors(corsOptions));
