@@ -63,3 +63,9 @@
 1. _client_ direktorijoje _npm_ pagalba įrašomi paketai: _bootstrap_, _bootstrap-icons_ ir _react-dom-router_.
 2. _client/index.js_ faile suimportuojami bootsrap stiliai, skriptai ir ikonėlių stiliai.
 3. _App.jsx_ importuojami _Router, Routes, Route_ is _react-router-dom_ ir komponento _return_ viduje sukuriamas elementas <Router>, kuriame bus talpinami <Routes>, o jų viduje <Route> į kitus komponentus ar skiltis. Taip implementuojamas SPA modelis.
+
+## Programos talpinimas internete
+1. Naudojamas _Render_ patalpinti _server_.
+2. Naudojamas _Vercel_ patalpinti _client_.
+3. Sekta [šios](https://medium.com/@yashpatel54257/how-to-deploy-a-mern-app-on-vercel-635683167e30) pamokos nurodymais, o CORS options pritaikytos iš _Vercel_ [dokumentacijos](https://vercel.com/guides/how-to-enable-cors#enabling-cors-using-vercel.json).
+4. Programa pasiekiama [čia](https://kontrastu-virtuve.vercel.app/).
