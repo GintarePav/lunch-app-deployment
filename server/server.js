@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 const app = require("./index");
 const dotenv = require("dotenv");
 dotenv.config({ path: `${__dirname}/config.env` });
-const port = process.env.PORT;
-const host = process.env.HOST;
+const port = process.env.PORT || 8080;
+const host = process.env.HOST || "0.0.0.0";
 const DB = process.env.DATABASE;
 
 mongoose
