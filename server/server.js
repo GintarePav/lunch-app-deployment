@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const app = require("./index");
 const dotenv = require("dotenv");
 
-// Load environment variables from config.env file
+// Load environment variables
 dotenv.config({ path: `${__dirname}/config.env` });
 
 const port = process.env.PORT || 8080;

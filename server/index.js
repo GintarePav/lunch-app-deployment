@@ -4,27 +4,30 @@ const userRoutes = require("./routes/userRoutes");
 const dishRoutes = require("./routes/dishRoutes");
 const dotenv = require("dotenv");
 
-// Load environment variables from config.env file
+// Load environment variables
 dotenv.config({ path: `${__dirname}/config.env` });
 
 const app = express();
 
 // CORS configuration
-app.use(
-  cors({
-    origin: process.env.CLIENT_URL || "http://localhost:3000",
-    credentials: true,
-  })
-);
+const corsOptions = {
+  origin: process.env.CLIENT_URL || "http://localhost:3000", // Replace with your Vercel URL in production
+  methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+};
 
-// Middleware to handle JSON POST requests
+app.use(cors(corsOptions));
+
+// Middleware for parsing request bodies
+app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 app.use(express.json());
 
-// Define routes
+// Route definitions
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/dishes", dishRoutes);
 
-// Add a root route for testing
+// Root route for verification
 app.get("/", (req, res) => res.send("Your backend is going well"));
 
 module.exports = app;
