@@ -9,28 +9,24 @@ const OrdersSection = (props) => {
   const { userData } = props;
   const [allOrders, setAllOrders] = useState([]);
 
-  const fetchOrders = () => {
-    const token = localStorage.getItem("token");
-    axios
-      .get(
-        `${process.env.REACT_APP_SERVER_URL}/api/v1/dishes/${userData.user?.id}/orders`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      .then((response) => {
-        setAllOrders(response.data.data || []);
-      })
-      .catch((error) => {
-        console.error("Get all dishes error:", error);
-      });
-  };
-
   useEffect(() => {
     if (userData.user?.id) {
-      fetchOrders();
+      const token = localStorage.getItem("token");
+      axios
+        .get(
+          `${process.env.REACT_APP_SERVER_URL}/api/v1/dishes/${userData.user?.id}/orders`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        .then((response) => {
+          setAllOrders(response.data.data || []);
+        })
+        .catch((error) => {
+          console.error("Get all dishes error:", error);
+        });
     }
   }, [userData.user]);
 
@@ -41,17 +37,13 @@ const OrdersSection = (props) => {
     >
       <SectionDescription
         headline="Užsakymų istorija"
-        text="Čia rasite visų savo užsakymų istoriją, galėsite įvertinti patiekalus bei dar kartą juos užsisakyti."
+        text="Čia rasite visų savo užsakymus."
       />
       <div className="d-flex flex-wrap w-100 justify-content-center align-items-center">
         {allOrders.length ? (
           allOrders.map((dishData, index) => (
             <div key={index} className="position-relative">
-              <DishCard
-                dishData={dishData.dish}
-                userData={userData}
-                fetchOrders={fetchOrders}
-              >
+              <DishCard dishData={dishData.dish} userData={userData}>
                 <span
                   aria-label="Užsakymo data"
                   className="position-absolute top-0 start-50 translate-middle badge bg-dark border border-white border-opacity-25"

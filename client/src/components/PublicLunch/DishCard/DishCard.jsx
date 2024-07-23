@@ -3,7 +3,9 @@ import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const DishCard = (props) => {
-  const { dishData, userData, children, fetchOrders } = props;
+  const { dishData, userData, children, fetchAllLunch, fetchTodaysLunch } =
+    props;
+  // console.log(dishData);
   const navigate = useNavigate();
   const location = useLocation();
   const today = Date().slice(0, 3);
@@ -28,6 +30,14 @@ const DishCard = (props) => {
       });
   };
 
+  const enableLikeBtn = (likes) => {
+    if (likes.length === 0) {
+      return false;
+    } else {
+      return likes.some((like) => like.user._id === userData.user.id);
+    }
+  };
+
   const likeDish = (dishId, userId) => {
     axios
       .post(
@@ -41,7 +51,11 @@ const DishCard = (props) => {
         }
       )
       .then(() => {
-        fetchOrders();
+        if (location.pathname === "/all-lunch") {
+          fetchAllLunch();
+        } else if (location.pathname === "/todays-lunch") {
+          fetchTodaysLunch();
+        }
       })
       .catch((error) => {
         console.error("Order error:", error);
@@ -82,43 +96,47 @@ const DishCard = (props) => {
           <span>{translateDay(dishData.day)}</span>
         </p>
       </div>
-      <div className="card-footer d-flex justify-content-evenly">
-        <button
-          type="button"
-          className={
-            dishData.day === today
-              ? "btn btn-success w-50 mx-1"
-              : "btn btn-secondary w-50 mx-1"
-          }
-          aria-label={
-            dishData.day === today ? "Užsakyti" : "Užsakymas galimas kitą dieną"
-          }
-          disabled={dishData.day === today ? false : true}
-          onClick={() => {
-            placeOrder(userData.user.id, dishData._id);
-          }}
-        >
-          <i className="bi bi-bag-plus"></i>
-        </button>
-        <button
-          type="button"
-          onClick={() => likeDish(dishData._id, userData.user.id)}
-          className="btn btn-warning w-50 mx-1"
-          disabled={location.pathname === "/orders" ? false : true}
-          aria-label="Įvertinimas"
-        >
-          <span className="text-white">
-            {dishData.likes?.length ? dishData.likes.length : ""}
-          </span>{" "}
-          <i
+      {location.pathname !== "/orders" && (
+        <div className="card-footer d-flex justify-content-evenly">
+          <button
+            type="button"
             className={
-              dishData.likes?.length
-                ? "bi bi-star-fill text-white"
-                : "bi bi-star text-white"
+              dishData.day === today
+                ? "btn btn-success w-50 mx-1"
+                : "btn btn-secondary w-50 mx-1"
             }
-          ></i>
-        </button>
-      </div>
+            aria-label={
+              dishData.day === today
+                ? "Užsakyti"
+                : "Užsakymas galimas kitą dieną"
+            }
+            disabled={dishData.day === today ? false : true}
+            onClick={() => {
+              placeOrder(userData.user.id, dishData._id);
+            }}
+          >
+            <i className="bi bi-bag-plus"></i>
+          </button>
+          <button
+            type="button"
+            onClick={() => likeDish(dishData._id, userData.user.id)}
+            className="btn btn-warning w-50 mx-1"
+            disabled={enableLikeBtn(dishData.likes)}
+            aria-label="Įvertinimas"
+          >
+            <span className="text-white">
+              {dishData.likes?.length ? dishData.likes.length : ""}
+            </span>{" "}
+            <i
+              className={
+                dishData.likes?.length
+                  ? "bi bi-star-fill text-white"
+                  : "bi bi-star text-white"
+              }
+            ></i>
+          </button>
+        </div>
+      )}
     </div>
   );
 };

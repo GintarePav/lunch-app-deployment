@@ -1,10 +1,10 @@
 # Dienos pietų užsakymo "web" programa
 
-Ši repozitorija talpina pilną internetinę programą dienos pietums užsisakyti, vertinti ir valdyti valgiaraštį.Programa parašyta laikantis KITM pavyzdinės egzamino užduoties reikalavimų ir nurodymų. Užduoties tikslas - įsivertinti kompetencijas įgytas tiek _front-end_, tiek _back-end_, t.y. ši programa yra _full-stack_.
+Ši repozitorija talpina pilną internetinę programą dienos pietums užsisakyti, vertinti ir valdyti valgiaraštį. Programa parašyta laikantis KITM pavyzdinės egzamino užduoties reikalavimų ir nurodymų. Užduoties tikslas - įsivertinti kompetencijas įgytas tiek _front-end_, tiek _back-end_, t.y. ši programa yra _full-stack_.
 
 ## Turinys
 
-- [Projekto Apžvalga](#projekto-apžvalga)
+- [Programos Apžvalga](#projekto-apžvalga)
 - [Funkcijos](#funkcijos)
 - [Technologijos](#technologijos)
 - [Reikalavimai](#reikalavimai)
@@ -12,28 +12,30 @@
 - [Naudojimas](#naudojimas)
 - [Bendradarbiavimas](#bendradarbiavimas)
 
-### Projekto Apžvalga
+### Programos Apžvalga
 
 Programos tikslas - leisti miesto gyventojams ir svečiams rasti informaciją apie dienos pietus, juos užsakyti, o užsakius įvertinti. Prieigą prie valgiaraščio ir kito programos funkcionalumo turi tik registruoti vartotojai.
 
 Prieigą prie valgiaraščio kūrimo, redagavimo ir trynimo turi tik vartotojas-administartorius (admin@lunchapp.com). Be prieigos prie asministracinės, valgiaraščio valdymo sskilties, šis vartotojas turi visas prieigas kaip įprasti vartotojai.
 
-Prisiregistravus ir prisijungus, vartotojas įgauna įprasto vartotojo rolę ir yra nuvedamas į dienos pietų puslapį, kur rodomi tik šios dienos pietūs. Čia galima juos užsisakyti. Valgiaraštis keičiasi su kiek viena diena.
+Prisiregistravus ir prisijungus, vartotojas įgauna įprasto vartotojo rolę ir yra nuvedamas į dienos pietų puslapį, kur rodomi tik šios dienos pietūs. Čia galima juos užsisakyti bei įvertinti. Valgiaraštis keičiasi su kiek viena diena.
 
-Norinčius žinoti, kokių patiekalų tikėtis kitomis dienomis, nudžiugins _Visų patiekalų_ skiltis, kur galima peržiūrėti visą valgiaraštį, ieškoti patiekalų pagal jų gaminimo (savaitės) dieną arba pavadinimą (ar abu kriterijus). Dėl patogumo vartotojui, šioje skiltyje taip pat galima užsisakyti ir šiandienos pietus. Kad tai padaryti galima leis žinoti žalias užsakymo mygtukas. Kitų dienų patiekalų užsakymas - negalimas (mygtukas pilkas).
+Norinčius žinoti, kokių patiekalų tikėtis kitomis dienomis, nudžiugins _Visų patiekalų_ skiltis, kur galima peržiūrėti visą valgiaraštį, ieškoti patiekalų pagal jų gaminimo (savaitės) dieną arba pavadinimą (ar abu kriterijus). Dėl patogumo vartotojui, šioje skiltyje taip pat galima užsisakyti bei vertinti ir šiandienos pietus. Kad tai padaryti galima leis žinoti žalias užsakymo mygtukas. Kitų dienų patiekalų užsakymas - negalimas (mygtukas pilkas).
 
-Abiejose skiltyse matomas patiekalų įvertinimas, matuojamas patiktukais. Koks skaičius matomas šalia žvaigždutės - tiek kartų kažkam patiko šis patiekalas. Tiesa, patiekalus galima vertinti tik _Mano užsakymų_ skiltyje.
+Abiejose skiltyse matomas patiekalų įvertinimas, matuojamas patiktukais. Koks skaičius matomas šalia žvaigždutės - tiek kartų kažkam patiko šis patiekalas.
+
+Užsakius patiekalą vartotojas nuvedamas į asmeninių užsakymų pusalpį.
 
 ### Funkcijos
 
-1. **Vartotojo autentifikacija ir autorizacija:** registracija, prisijungimas, prieigos prie administracinės skilties ribojimas.
+1. **Vartotojo autentifikacija ir autorizacija:** registracija, prisijungimas, prieigos prie administracinės skilties ribojimas pagal rolę.
 1. **Valgiaraščio valdymas:** patiekalų kūrimas, redagavimas, trynimas.
 1. **Viso valgiaraščio peržiūra:** kiek vieno patiekalo atvaizdavimas kortelėje su nuotrauka, pavadinimu, aprašymu, kaina, savaitės diena, užsakymo ir įvertinimo mygtukai.
 1. **Patiekalų paieška:** atvaizdavimas tik tų patiekalų kortelių, kurios atitinka paieškos kriterijus (diena ir/arba pavadinimas).
 1. **Šiandienos patiekalų peržiūra:** gaunama šiandienos informacija (metai, mėnuo, diena) ir jai priskiriami atitinkamos savaitės dienos (pirmad. - sekmad.) patiekalai.
 1. **Šiandienos patiekalo užsakymas:** tikrinama ar patiekalas priskiriamas šiandienai, aktyvuojamas užsakymo mygtukas, kurį paspaudus, patiekalas išsaugomas vartotojo užsakymų skiltyje.
 1. **Vartotojo užsakymų peržiūra:** kiek vienas vartotojas mato kokius patiekalus užsisakė ir užsakymo datą; vartotojai mato tik savo užsakymus, atvaizduojamus patiekalo kortelės forma.
-1. **Patiekalo įvertinimas:** aktyvuojamas patiekalo kortelėje esantis įvertinimo mygtukas. Vertinti galima kiek vieną užsakymą, t.y. tas pats vartotojas tą patį patiekalą gali įvertinti visus kartus, kai jį užsisakė.
+1. **Patiekalo įvertinimas:** tikrinama, ar vartotojas jau yra įvertinęs patiekalą. Jei taip - įvertinimo mygtukas neaktyvus, jei ne - įvertinimo mygtukas aktyvus ir jį paspaudus, "patiktukas" išsaugomas ir iškart atvaizduojamas.
 
 ### Technologijos
 
@@ -89,8 +91,15 @@ Pastebėsite, kad _server_ dalyje naudojamas _dotenv_ paketas. Dėl saugumo, _co
 ```
 PORT = 8080
 HOST= 127.0.0.1
+CLIENT_URL=http://localhost:3000
 DATABASE: [jūsų susikurtos MongoDB duombazės konfigūracinė nuoroda]
 TOKEN_KEY: [jūsų sugalvotas kodas]
+```
+
+_client_ direktorijoje _dotenv_ paketas nereikalingas, tad reiktų susikurti savo _.env_ failą ir ten nurodyti šią informaciją:
+
+```
+REACT_APP_SERVER_URL=http://127.0.0.1:8080
 ```
 
 ### Naudojimas

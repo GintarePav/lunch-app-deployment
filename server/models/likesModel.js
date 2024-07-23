@@ -28,6 +28,9 @@ likesSchema.pre(/^find/, function (next) {
   this.populate({
     path: "dish",
     select: "_id",
+  }).populate({
+    path: "user",
+    select: "_id",
   });
   next();
 });

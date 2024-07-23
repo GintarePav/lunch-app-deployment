@@ -8,7 +8,7 @@ const TodaysLunchSection = (props) => {
   const { userData } = props;
   const [todaysLunch, setTodaysLunch] = useState([]);
 
-  useEffect(() => {
+  const fetchTodaysLunch = () => {
     const token = localStorage.getItem("token");
     axios
       .get(`${process.env.REACT_APP_SERVER_URL}/api/v1/dishes/today`, {
@@ -22,6 +22,10 @@ const TodaysLunchSection = (props) => {
       .catch((error) => {
         console.error("Get today's dishes error:", error);
       });
+  };
+
+  useEffect(() => {
+    fetchTodaysLunch();
   }, []);
 
   return (
@@ -37,7 +41,12 @@ const TodaysLunchSection = (props) => {
         {todaysLunch.length ? (
           todaysLunch.map((dishData, index) => {
             return (
-              <DishCard key={index} dishData={dishData} userData={userData} />
+              <DishCard
+                key={index}
+                dishData={dishData}
+                userData={userData}
+                fetchTodaysLunch={fetchTodaysLunch}
+              />
             );
           })
         ) : (

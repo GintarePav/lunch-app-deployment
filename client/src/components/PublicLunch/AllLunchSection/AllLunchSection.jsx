@@ -9,7 +9,7 @@ const AllLunchSection = (props) => {
   const { userData } = props;
   const [allLunch, setAllLunch] = useState([]);
 
-  useEffect(() => {
+  const fetchAllLunch = () => {
     const token = localStorage.getItem("token");
     axios
       .get(`${process.env.REACT_APP_SERVER_URL}/api/v1/dishes`, {
@@ -23,6 +23,10 @@ const AllLunchSection = (props) => {
       .catch((error) => {
         console.error("Get all dishes error:", error);
       });
+  };
+
+  useEffect(() => {
+    fetchAllLunch();
   }, []);
 
   return (
@@ -32,7 +36,7 @@ const AllLunchSection = (props) => {
     >
       <SectionDescription
         headline="Visi mūsų patiekalai"
-        text="Čia galite peržiūrėti visus patiekalus, jų įvertinimus ir kurią dieną jie bus gaminami. Taip pat galite užsisakyti šios dienos pietus."
+        text="Čia galite peržiūrėti visus patiekalus, jų įvertinimus ir kurią dieną jie bus gaminami. Taip pat galite įvertinti patiekalus bei užsisakyti šios dienos pietus."
       >
         <Search setAllLunch={setAllLunch} />
       </SectionDescription>
@@ -40,7 +44,12 @@ const AllLunchSection = (props) => {
         {allLunch.length ? (
           allLunch.map((dishData, index) => {
             return (
-              <DishCard key={index} dishData={dishData} userData={userData} />
+              <DishCard
+                key={index}
+                dishData={dishData}
+                userData={userData}
+                fetchAllLunch={fetchAllLunch}
+              />
             );
           })
         ) : (
