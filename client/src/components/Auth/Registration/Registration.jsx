@@ -25,14 +25,14 @@ const Registration = () => {
           `${process.env.REACT_APP_SERVER_URL}/api/v1/users/register`,
           formData
         )
-        .then((response) => {
+        .then(() => {
           navigate("/");
         })
         .catch((error) => {
           console.error("Registration error:", error);
+          document.getElementById("register-error-message").textContent =
+            "Hmm... Kažkas ne taip.";
         });
-    } else {
-      console.log("Form validation failed");
     }
   };
 
@@ -111,6 +111,12 @@ const Registration = () => {
             >
               Registruotis
             </button>
+          </div>
+          <div className="mb-3 bg-white rounded">
+            <p
+              id="register-error-message"
+              className="text-center text-dark"
+            ></p>
           </div>
         </form>
       </div>

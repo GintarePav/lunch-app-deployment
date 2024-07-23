@@ -46,9 +46,9 @@ const Login = (props) => {
         })
         .catch((error) => {
           console.error("Login error:", error);
+          document.getElementById("login-error-message").textContent =
+            "Hmm... Kažkas ne taip.";
         });
-    } else {
-      console.log("Login validation failed");
     }
   };
 
@@ -91,6 +91,9 @@ const Login = (props) => {
             >
               Prisijungti
             </button>
+          </div>
+          <div className="mb-3 bg-white rounded">
+            <p id="login-error-message" className="text-center text-dark"></p>
           </div>
           <div className="mb-3">
             <div
