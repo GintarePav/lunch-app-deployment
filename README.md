@@ -2,6 +2,8 @@
 
 Ši repozitorija talpina pilną internetinę programą dienos pietums užsisakyti, vertinti ir valdyti valgiaraštį. Programa parašyta laikantis KITM pavyzdinės egzamino užduoties reikalavimų ir nurodymų. Užduoties tikslas - įsivertinti kompetencijas įgytas tiek _front-end_, tiek _back-end_, t.y. ši programa yra _full-stack_.
 
+**[Čia](https://kontrastu-virtuve.vercel.app/) galima pamatyti ir išbandyti programą.**
+
 ## Turinys
 
 - [Programos Apžvalga](#projekto-apžvalga)
@@ -116,6 +118,6 @@ npm start
 
 ### Bendradarbiavimas
 
-Kreiptis į _gintare.pavilaviciute@gmail.com_, jei reikalinga kokia nors informacija, pvz. peržiūrint ["pahostintą" versiją](https://kontrastu-virtuve.vercel.app/todays-lunch) ir norint gauti administratoriaus teises.
+Kreiptis į _gintare.pavilaviciute@gmail.com_, jei reikalinga kokia nors informacija, pvz. peržiūrint ["pahostintą" versiją](https://kontrastu-virtuve.vercel.app/) ir norint gauti administratoriaus teises.
 
 _projectSetUp.md_ taip pat galima matyti mano užrašus bekuriant projekto bazinę dalį.
