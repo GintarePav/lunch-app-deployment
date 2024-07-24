@@ -67,7 +67,7 @@ Norint pasileisti projektą lokaliai, t.y. savo kompiuteryje, prieš pradedant, 
 #### 1\. Nukopijuokite Repozitoriją
 
 ```
-git clone https://github.com/GintarePav/test-lunch
+git clone https://github.com/GintarePav/lunch-app-deployment
 ```
 
 #### 2\. Įdiekite Priklausomybes
