@@ -1,3 +1,10 @@
+## Priminimas kaip susitvarkyti git ant Windows OS
+1. Eiti į _Windows Credentials_ ir ištrinti esamą vartotoją.
+1. Savo repozitorijoje suvesti komandas su savo duomenimis pagal [šią dokumentaciją](https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration).
+1. Susikurti naują repozitoriją github puslapyje.
+1. Prisijungti prie git VS Code.
+1. Supushinti kodą kaip įprastai.
+
 ## Kaip sukuriama bazinė aplikacijos struktūra:
 
 1. Pradinėje direktorijoje, kuri nebus git repozitorija, komandinėje eilutėje paleidžiama _npx craete-react-app application-name_ komanda, sukurianti _application-name_ direktoriją, talpinančią _React_ aplikaciją.
